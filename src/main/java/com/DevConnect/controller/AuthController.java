@@ -1,8 +1,6 @@
-package com.DevConnet.controller;
-import com.DevConnet.service.AuthService;
-import com.DevConnet.dto.RegisterRequest;
-import com.DevConnet.service.AuthService;
-import com.DevConnet.service.AuthService;
+package com.DevConnect.controller;
+import com.DevConnect.service.AuthService;
+import com.DevConnect.dto.RegisterRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

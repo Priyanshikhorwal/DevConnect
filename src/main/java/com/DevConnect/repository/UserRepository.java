@@ -1,6 +1,6 @@
-package com.DevConnet.repository;
+package com.DevConnect.repository;
 
-import com.DevConnet.entity.User;
+import com.DevConnect.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

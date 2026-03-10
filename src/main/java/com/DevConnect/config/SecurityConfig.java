@@ -1,4 +1,4 @@
-package com.DevConnet.config;
+package com.DevConnect.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

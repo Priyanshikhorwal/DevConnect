@@ -1,4 +1,4 @@
-package com.DevConnet.entity;
+package com.DevConnect.entity;
 
 import jakarta.persistence.*;
 

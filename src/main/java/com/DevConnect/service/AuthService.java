@@ -1,8 +1,8 @@
-package com.DevConnet.service;
+package com.DevConnect.service;
 
-import com.DevConnet.dto.RegisterRequest;
-import com.DevConnet.entity.User;
-import com.DevConnet.repository.UserRepository;
+import com.DevConnect.dto.RegisterRequest;
+import com.DevConnect.entity.User;
+import com.DevConnect.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

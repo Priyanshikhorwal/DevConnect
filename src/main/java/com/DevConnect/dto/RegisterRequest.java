@@ -1,4 +1,4 @@
-package com.DevConnet.dto;
+package com.DevConnect.dto;
 
 public class RegisterRequest {
     private String username;
