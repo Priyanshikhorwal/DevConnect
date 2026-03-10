@@ -16,17 +16,6 @@ public class AuthService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-//    public String register(RegisterRequest request) {
-//
-//        User user = new User();
-//        user.setName(request.getName());
-//        user.setEmail(request.getEmail());
-//        user.setPassword(passwordEncoder.encode(request.getPassword()));
-//
-//        userRepository.save(user);
-//
-//        return "User registered successfully";
-//    }
 
     public String register(RegisterRequest request){
         User user = new User();

@@ -19,4 +19,5 @@ public class AuthController {
     public String register(@RequestBody RegisterRequest request) {
         return authService.register(request);
     }
+
 }
