@@ -24,12 +24,17 @@ public class PostService {
     }
 
     public Post addPost(PostRequest postRequest){
+
+        User user = userRepository.findById(postRequest.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         Post post = new Post();
 
         post.setContent(postRequest.getContent());
         post.setCreatedAt(LocalDateTime.now());
-        Post savedPost = postRepository.save(post);
-        return savedPost;
+        post.setUser(user);
+
+        return postRepository.save(post);
     }
 
     public List<Post> getAllPosts() {

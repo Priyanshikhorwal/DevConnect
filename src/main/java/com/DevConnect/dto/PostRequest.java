@@ -4,6 +4,7 @@ package com.DevConnect.dto;
 public class PostRequest {
 
     private String content;
+    private Long userId;
 
     public String getContent() {
         return content;
@@ -11,5 +12,13 @@ public class PostRequest {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
