@@ -28,11 +28,8 @@ public class PostService {
 
         post.setContent(postRequest.getContent());
         post.setCreatedAt(LocalDateTime.now());
-        User user = userRepository.findById(Math.toIntExact(post.getId())).orElseThrow();
-
-        post.setUser(user);
-
-        return postRepository.save(post);
+        Post savedPost = postRepository.save(post);
+        return savedPost;
     }
 
     public List<Post> getAllPosts() {
