@@ -3,6 +3,7 @@ package com.DevConnect.controller;
 import com.DevConnect.dto.PostRequest;
 import com.DevConnect.entity.Post;
 import com.DevConnect.service.PostService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class PostController {
         this.postService = postService;
     }
     @PostMapping
-    public Post addPost(@RequestBody PostRequest postRequest){
+    public Post addPost(@Valid @RequestBody PostRequest postRequest){
         return postService.addPost(postRequest);
     }
     @GetMapping
