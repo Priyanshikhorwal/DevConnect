@@ -1,6 +1,7 @@
 package com.DevConnect.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Profile {
@@ -12,7 +13,7 @@ public class Profile {
     private String bio;
 
     private String skills;
-
+    @NotEmpty
     private String location;
 
     @OneToOne

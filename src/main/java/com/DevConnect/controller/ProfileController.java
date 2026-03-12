@@ -3,6 +3,7 @@ package com.DevConnect.controller;
 import com.DevConnect.dto.ProfileRequest;
 import com.DevConnect.entity.Profile;
 import com.DevConnect.service.ProfileService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class ProfileController {
     }
 
     @PostMapping
-    public Profile createProfile(@RequestBody ProfileRequest request){
+    public Profile createProfile(@Valid @RequestBody ProfileRequest request){
         return profileService.createProfile(request);
     }
 }
