@@ -3,6 +3,7 @@ package com.DevConnect.service;
 import com.DevConnect.dto.PostRequest;
 import com.DevConnect.entity.Post;
 import com.DevConnect.entity.User;
+import com.DevConnect.exception.ResourceNotFoundException;
 import com.DevConnect.repository.PostRepository;
 import com.DevConnect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class PostService {
     public Post addPost(PostRequest postRequest){
 
         User user = userRepository.findById(Math.toIntExact(postRequest.getUserId()))
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Post post = new Post();
 
