@@ -1,6 +1,7 @@
 package com.DevConnect.controller;
 import com.DevConnect.service.AuthService;
 import com.DevConnect.dto.RegisterRequest;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +15,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequest request) {
+    public String register( @Valid @RequestBody RegisterRequest request) {
         return authService.register(request);
     }
 

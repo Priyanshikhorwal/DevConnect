@@ -25,7 +25,7 @@ public class PostService {
 
     public Post addPost(PostRequest postRequest){
 
-        User user = userRepository.findById(postRequest.getUserId())
+        User user = userRepository.findById(Math.toIntExact(postRequest.getUserId()))
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Post post = new Post();
