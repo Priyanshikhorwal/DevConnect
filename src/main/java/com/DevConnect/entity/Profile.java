@@ -2,7 +2,7 @@ package com.DevConnect.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Profile {
 
@@ -16,8 +16,9 @@ public class Profile {
     @NotEmpty
     private String location;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", unique = true, nullable = false)
+    @JsonIgnore
     private User user;
 
     public Long getId() {

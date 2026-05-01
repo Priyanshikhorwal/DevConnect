@@ -1,24 +1,31 @@
 package com.DevConnect.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
+import java.util.List;
 
 @Entity
-@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     @Size(min=5, max=50)
     private String username;
-    @Pattern(regexp ="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*", message = "Username must be 6 to 12 characters long with no special characters")
+    @Pattern(
+            regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$",
+            message = "Password must contain uppercase, lowercase, digit"
+    )
     private String password;
     @Email
     @Column(unique = true)
     private String email;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Post> posts;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile profile;
 
     public Long getId() {
         return id;
