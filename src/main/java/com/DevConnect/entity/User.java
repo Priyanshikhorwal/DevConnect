@@ -13,10 +13,7 @@ public class User {
     @NotNull
     @Size(min=5, max=50)
     private String username;
-    @Pattern(
-            regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$",
-            message = "Password must contain uppercase, lowercase, digit"
-    )
+
     private String password;
     @Email
     @Column(unique = true)
@@ -40,7 +37,7 @@ public class User {
         return password;
     }
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.trim();
     }
     public String getEmail() {
         return email;
