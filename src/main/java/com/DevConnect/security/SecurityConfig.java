@@ -2,6 +2,8 @@ package com.DevConnect.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,14 +18,16 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                                 .anyRequest().permitAll()
-//                        .requestMatchers("/api/auth/**").permitAll()
-//                        .requestMatchers("/api/profile/**").permitAll()
-//                        .requestMatchers("/api/post").permitAll()
-//                        .anyRequest().authenticated()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/profile/**").permitAll()
+                        .requestMatchers("/api/post").permitAll()
+                        .anyRequest().authenticated()
                 );
 
         return http.build();
     }
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) th  zion {}
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){
