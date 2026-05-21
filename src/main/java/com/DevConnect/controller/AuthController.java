@@ -1,4 +1,5 @@
 package com.DevConnect.controller;
+import com.DevConnect.dto.LoginRequest;
 import com.DevConnect.service.AuthService;
 import com.DevConnect.dto.RegisterRequest;
 import jakarta.validation.Valid;
@@ -19,5 +20,7 @@ public class AuthController {
         return authService.register(request);
     }
     @PostMapping("/login")
-    public String login(@RequestBody )
+    public String login(@RequestBody LoginRequest request) {
+        return authService.login(request);
+    }
 }

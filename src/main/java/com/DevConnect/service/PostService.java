@@ -6,9 +6,8 @@ import com.DevConnect.entity.User;
 import com.DevConnect.exception.ResourceNotFoundException;
 import com.DevConnect.repository.PostRepository;
 import com.DevConnect.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,13 +23,17 @@ public class PostService {
         this.userRepository = userRepository;
     }
 
-    public Post addPost(PostRequest postRequest){
+    public Post addPost(PostRequest postRequest) {
 
-        User user = userRepository.findById(Math.toIntExact(postRequest.getUserId()))
+        // 1. Extract the email (username) of the currently authenticated user from SecurityContext
+        String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        // 2. Fetch the User entity from the database
+        User user = userRepository.findByEmail(currentUserEmail)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
+        // 3. Create and save the Post
         Post post = new Post();
-
         post.setContent(postRequest.getContent());
         post.setCreatedAt(LocalDateTime.now());
         post.setUser(user);
