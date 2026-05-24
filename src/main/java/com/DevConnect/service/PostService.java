@@ -6,17 +6,18 @@ import com.DevConnect.entity.User;
 import com.DevConnect.exception.ResourceNotFoundException;
 import com.DevConnect.repository.PostRepository;
 import com.DevConnect.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class PostService {
 
     private final PostRepository postRepository;
-    public final UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public PostService(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
@@ -24,7 +25,6 @@ public class PostService {
     }
 
     public Post addPost(PostRequest postRequest) {
-
         // 1. Extract the email (username) of the currently authenticated user from SecurityContext
         String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -41,7 +41,7 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public Page<Post> getAllPosts(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
 }

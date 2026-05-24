@@ -1,28 +1,16 @@
 package com.DevConnect.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
+@AllArgsConstructor
 public class ApiError {
-
-    private String message;
-    private int status;
     private LocalDateTime timestamp;
-
-    public ApiError(String message, int status) {
-        this.message = message;
-        this.status = status;
-        this.timestamp = LocalDateTime.now();
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
+    private int status;
+    private String error;
+    private String message;
+    private String path;
 }

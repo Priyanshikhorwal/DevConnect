@@ -21,7 +21,6 @@ public class ProfileService {
     }
 
     public Profile createProfile(ProfileRequest request) {
-
         // 1. Extract the authenticated user's email
         String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -29,8 +28,11 @@ public class ProfileService {
         User user = userRepository.findByEmail(currentUserEmail)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
-        // 3. Create and associate the Profile
-        Profile profile = new Profile();
+        // 3. Check if profile already exists
+        Profile profile = profileRepository.findByUser(user)
+                .orElse(new Profile());
+
+        // 4. Update or create profile
         profile.setBio(request.getBio());
         profile.setSkills(request.getSkills());
         profile.setLocation(request.getLocation());
@@ -38,4 +40,16 @@ public class ProfileService {
 
         return profileRepository.save(profile);
     }
-}
+
+    public Profile getProfileByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        return profileRepository.findByUser(user)
+                .orElseThrow(() -> new ResourceNotFoundException("Profile not found"));
+    }
+
+    public Profile getProfileByUsername(String username) {
+        return profileRepository.findByUserUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("Profile not found"));
+    }
+}

@@ -1,8 +1,11 @@
 package com.DevConnect.controller;
+
 import com.DevConnect.dto.LoginRequest;
+import com.DevConnect.dto.AuthResponse;
 import com.DevConnect.service.AuthService;
 import com.DevConnect.dto.RegisterRequest;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,11 +19,14 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register( @Valid @RequestBody RegisterRequest request) {
-        return authService.register(request);
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request) {
+        String response = authService.register(request);
+        return ResponseEntity.ok(response);
     }
+
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
-        return authService.login(request);
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
+        AuthResponse response = authService.login(request);
+        return ResponseEntity.ok(response);
     }
 }
